@@ -1,4 +1,4 @@
-package gofast
+package gosettings
 
 import "testing"
 import "fmt"
