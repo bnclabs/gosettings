@@ -1,0 +1,15 @@
+language: go
+
+sudo: false
+
+go:
+  - 1.7
+
+before_install:
+  - if ! go get github.com/golang/tools/cmd/cover; then go get golang.org/x/tools/cmd/cover; fi
+
+script:
+  - go get ./...
+  - go test ./...
+  - go test -race -timeout 4000 -run=xxx -test.bench=. -test.benchmem=true ./...
+  - $HOME/gopath/bin/goveralls -service=travis-ci
