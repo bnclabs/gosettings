@@ -12,6 +12,6 @@ implemented under this package.
 
 **How to use Mixin**
 
-.. code-block:: go
-
+```go
     setts = make(Settings).Mixin(settings1, settings2)
+```
