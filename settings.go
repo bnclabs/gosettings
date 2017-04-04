@@ -18,6 +18,15 @@ func (setts Settings) Section(prefix string) Settings {
 	return section
 }
 
+// AddPrefix will prefix all settings keyname with `prefix`.
+func (setts Settings) AddPrefix(prefix string) Settings {
+	newsetts := make(Settings)
+	for key, value := range setts {
+		newsetts[prefix+key] = value
+	}
+	return newsetts
+}
+
 // Trim settings parameter with `prefix` string.
 func (setts Settings) Trim(prefix string) Settings {
 	trimmed := make(Settings)
@@ -58,14 +67,15 @@ func (setts Settings) Mixin(settings ...interface{}) Settings {
 
 // Bool return the boolean value for key.
 func (setts Settings) Bool(key string) bool {
-	if value, ok := setts[key]; !ok {
+	value, ok := setts[key]
+	if !ok {
 		panic(fmt.Errorf("missing settings %q", key))
-	} else if val, ok := value.(bool); !ok {
-		panic(fmt.Errorf("settings %q not a bool: %T", key, value))
-	} else {
-		return val
 	}
-	panic("unreachable code")
+	val, ok := value.(bool)
+	if !ok {
+		panic(fmt.Errorf("settings %q not a bool: %T", key, value))
+	}
+	return val
 }
 
 // Float64 return the int64 value for key.
@@ -101,7 +111,6 @@ func (setts Settings) Float64(key string) float64 {
 		return float64(val)
 	}
 	panic(fmt.Errorf("settings %v not a number: %T", key, value))
-	return 0
 }
 
 // Int64 return the int64 value for key.
@@ -137,7 +146,6 @@ func (setts Settings) Int64(key string) int64 {
 		return int64(val)
 	}
 	panic(fmt.Errorf("settings %v not a number: %T", key, value))
-	return 0
 }
 
 // Uint64 return the uint64 value for key.
@@ -173,17 +181,39 @@ func (setts Settings) Uint64(key string) uint64 {
 		return uint64(val)
 	}
 	panic(fmt.Errorf("settings %v not a number: %T", key, value))
-	return 0
 }
 
 // String return the string value for key.
 func (setts Settings) String(key string) string {
-	if value, ok := setts[key]; !ok {
+	value, ok := setts[key]
+	if !ok {
 		panic(fmt.Errorf("missing settings %q", key))
-	} else if val, ok := value.(string); !ok {
-		panic(fmt.Errorf("settings %v not a number: %T", key, value))
-	} else {
-		return val
 	}
+	val, ok := value.(string)
+	if !ok {
+		panic(fmt.Errorf("settings %v not string: %T", key, value))
+	}
+	return val
 	panic("unreachable code")
+}
+
+// Strings shall parse value as comma separated string items.
+func (setts Settings) Strings(key string) []string {
+	value, ok := setts[key]
+	if !ok {
+		panic(fmt.Errorf("missing settings %q", key))
+	}
+	val, ok := value.(string)
+	if !ok {
+		panic(fmt.Errorf("settings %v not string: %T", key, value))
+	}
+	ss := strings.Split(val, ",")
+	outs := make([]string, 0)
+	for _, s := range ss {
+		if s = strings.Trim(s, " \t\r\n"); s == "" {
+			continue
+		}
+		outs = append(outs, s)
+	}
+	return outs
 }
