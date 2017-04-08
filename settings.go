@@ -203,6 +203,10 @@ func (setts Settings) Strings(key string) []string {
 	if !ok {
 		panic(fmt.Errorf("missing settings %q", key))
 	}
+	vals, ok := value.([]string)
+	if ok {
+		return vals
+	}
 	val, ok := value.(string)
 	if !ok {
 		panic(fmt.Errorf("settings %v not string: %T", key, value))
