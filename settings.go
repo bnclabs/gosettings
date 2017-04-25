@@ -1,7 +1,8 @@
 package gosettings
 
-import "strings"
 import "fmt"
+import "strings"
+import "encoding/json"
 
 // Settings map of settings parameters.
 type Settings map[string]interface{}
@@ -220,4 +221,10 @@ func (setts Settings) Strings(key string) []string {
 		outs = append(outs, s)
 	}
 	return outs
+}
+
+// PPrint pretty print settings and return as string.
+func (setts Settings) PPrint() string {
+	data, _ := json.MarshalIndent(setts, "", "    ")
+	return string(data)
 }
