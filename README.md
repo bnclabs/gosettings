@@ -76,7 +76,7 @@ Now, llrbsettings will just be:
     llrbsetts <==> Settings{"maxkeylen": 1024, "maxvallen": 1024}
 ```
 
-In case llrb component provides a default set of configuration parameter,
+In case llrb component provide default set of configuration parameter,
 to merge these settings to application-level settings object, use
 AddPrefix:
 
@@ -92,9 +92,9 @@ appsetts will look like:
 
 **Settings from json**
 
-Most often, settings are obtained from a JSON text. One of the reason for
-using ``map[string]interface{}`` as the underlying datastructure is keep it
-friendly for JSON. To initialize Settings from JSON:
+Most often, settings are obtained from JSON text. One of the reason for
+using ``map[string]interface{}`` as the underlying datastructure is to keep
+it friendly for JSON. To initialize Settings from JSON:
 
 ```go
     var setts Settings
@@ -103,9 +103,9 @@ friendly for JSON. To initialize Settings from JSON:
 
 **Accessors**
 
-With map[string]interface{} settings value are resolved only during run time.
-There are several helper functions that type check and extract the settings
-value.
+With ``map[string]interface{}`` settings value are resolved only during run
+time.  There are several helper functions that type check and extract the
+settings value.
 
 * Bool(key string), return the boolean value for key.
 * Float64(key string), return the int64 value for key.
