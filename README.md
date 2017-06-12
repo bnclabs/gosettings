@@ -6,11 +6,11 @@ Settings and configurations for golang application
 [![GoDoc](https://godoc.org/github.com/prataprc/gosettings?status.png)](https://godoc.org/github.com/prataprc/gosettings)
 
 * Build components, libraries and applications that are easy to configure.
-* Easy to learn and use settings for your applications.
-* Settings object is represented as map[string]interface{} object.
+* Easy to learn and easy to use settings for your applications.
+* Settings object is represented as ``map[string]interface{}`` object.
 * Settings can be marshalled to JSON or unmarshalled from JSON.
 * Possible to add more formats for marshalling and unmarshalling settings.
-* All methods exported on settings object are immutable, except Mixin.
+* All methods exported on settings object are immutable, except ``Mixin``.
 
 Settings as Key value pairs
 ---------------------------
@@ -43,8 +43,9 @@ Although the former style is quite natural to manage a tree of settings at
 component level and at sub-component level, it can quickly become complex when
 we start passing settings object around the application. The later style
 attempt to preserve the topology of settings by using the dot-prefixed
-namespaces. There are two APIs available to filter out component level
-settings and merge it with container namespace:
+namespaces. There are three APIs available to filter out component level
+settings and merge it with container namespace, ``Section``, ``Trim``,
+and ``AddPrefix``:
 
 ```go
     setts := make(Settings)
@@ -73,6 +74,20 @@ Now, llrbsettings will just be:
 
 ```text
     llrbsetts <==> Settings{"maxkeylen": 1024, "maxvallen": 1024}
+```
+
+In case llrb component provides a default set of configuration parameter,
+to merge these settings to application-level settings object, use
+AddPrefix:
+
+```go
+    appsetts := llrbsetts.AddPrefix("llrb.")
+```
+
+appsetts will look like:
+
+```text
+    appsetts <==> Settings{"llrb.maxkeylen": 1024, "llrb.maxvallen": 1024}
 ```
 
 **Settings from json**
