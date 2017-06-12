@@ -2,6 +2,7 @@ package gosettings
 
 import "fmt"
 import "strings"
+import "strconv"
 import "encoding/json"
 
 // Settings map of settings parameters.
@@ -145,6 +146,12 @@ func (setts Settings) Int64(key string) int64 {
 		return int64(val)
 	case int8:
 		return int64(val)
+	case string:
+		i, err := strconv.ParseInt(val, 10, 64)
+		if err != nil {
+			panic(err)
+		}
+		return i
 	}
 	panic(fmt.Errorf("settings %v not a number: %T", key, value))
 }
@@ -180,6 +187,12 @@ func (setts Settings) Uint64(key string) uint64 {
 		return uint64(val)
 	case int8:
 		return uint64(val)
+	case string:
+		u, err := strconv.ParseUint(val, 10, 64)
+		if err != nil {
+			panic(err)
+		}
+		return u
 	}
 	panic(fmt.Errorf("settings %v not a number: %T", key, value))
 }

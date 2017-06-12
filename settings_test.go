@@ -115,7 +115,7 @@ func TestInt64(t *testing.T) {
 		"uint": uint(10), "uint64": uint64(10), "uint32": uint32(10),
 		"uint16": uint16(10), "uint8": uint8(10),
 		"int": int(10), "int64": int64(10), "int32": int32(10),
-		"int16": int16(10), "int8": int8(10),
+		"int16": int16(10), "int8": int8(10), "string": "10",
 	}
 	ref := int64(10)
 	for key := range setts {
@@ -143,7 +143,7 @@ func TestUint64(t *testing.T) {
 		"uint": uint(10), "uint64": uint64(10), "uint32": uint32(10),
 		"uint16": uint16(10), "uint8": uint8(10),
 		"int": int(10), "int64": int64(10), "int32": int32(10),
-		"int16": int16(10), "int8": int8(10),
+		"int16": int16(10), "int8": int8(10), "string": "10",
 	}
 	ref := uint64(10)
 	for key := range setts {
