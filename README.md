@@ -93,7 +93,7 @@ appsetts will look like:
 **Settings from json**
 
 Most often, settings are obtained from JSON text. One of the reason for
-using ``map[string]interface{}`` as the underlying datastructure is to keep
+using ``map[string]interface{}`` as the underlying data-structure is to keep
 it friendly for JSON. To initialize Settings from JSON:
 
 ```go
@@ -123,7 +123,7 @@ Settings API don't return error, instead it creates panic. This is because
 settings are mostly part of bootstrapping process and are expected to be
 clean and suggested by developers. If panics become un-avoidable please use
 [panic/recover](https://blog.golang.org/defer-panic-and-recover). We are
-listing some of the cases when panic can happend.
+listing some of the cases when panic can happened.
 
 * When accessing a settings key which is not present in the map.
 * When using one of the typed accessors, if underlying value does not match
