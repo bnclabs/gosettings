@@ -108,14 +108,14 @@ time.  There are several helper functions that type check and extract the
 settings value.
 
 * Bool(key string), return the boolean value for key.
-* Float64(key string), return the int64 value for key.
+* Float64(key string), return the float64 value for key.
 * Int64(key string) return the int64 value for key.
 * Uint64(key string) return the uint64 value for key.
 * String(key string) return the string value for key.
 * Strings(key string) shall parse value as comma separated string items.
 
-To encode large numbers that fit within int64 and uint64, settings value
-can be encoded as decimal strings.
+To encode large numbers that can fit within int64 and uint64, settings value
+can be encoded as decimal strings - ``{"epoch": "1125899906842624"}.
 
 **Panics**
 

@@ -80,7 +80,7 @@ func (setts Settings) Bool(key string) bool {
 	return val
 }
 
-// Float64 return the int64 value for key.
+// Float64 return the float64 value for key.
 func (setts Settings) Float64(key string) float64 {
 	value, ok := setts[key]
 	if !ok {
