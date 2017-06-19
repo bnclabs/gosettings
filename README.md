@@ -10,6 +10,7 @@ Settings and configurations for golang application
 * Settings can be marshalled to JSON or un-marshalled from JSON.
 * Possible to add more formats for marshalling and un-marshalling settings.
 * All methods exported on settings object are immutable, except ``Mixin``.
+* Stable APIs, existing APIs are not going to change.
 
 Settings as Key value pairs
 ---------------------------
