@@ -212,7 +212,6 @@ func (setts Settings) String(key string) string {
 		panic(fmt.Errorf("settings %v not string: %T", key, value))
 	}
 	return val
-	panic("unreachable code")
 }
 
 // Strings shall parse value as comma separated string items.

@@ -16,8 +16,8 @@ Settings as Key value pairs
 ---------------------------
 
 Golang map is the chosen structure for passing around settings, holding them
-within components and interpret them when/where ever it is needed. To create
-new settings object:
+within components and interpret them when ever needed. To create new
+settings object:
 
 ```go
     setts := make(Settings)
