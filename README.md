@@ -5,19 +5,18 @@ Settings and configurations for golang application
 [![Coverage Status](https://coveralls.io/repos/prataprc/gosettings/badge.png?branch=master&service=github)](https://coveralls.io/github/prataprc/gosettings?branch=master)
 [![GoDoc](https://godoc.org/github.com/prataprc/gosettings?status.png)](https://godoc.org/github.com/prataprc/gosettings)
 
-* Build components, libraries and applications that are easy to configure.
-* Easy to learn and easy to use settings for your applications.
+* Easy to learn and easy to use settings for your libraries and applications.
 * Settings object is represented as ``map[string]interface{}`` object.
-* Settings can be marshalled to JSON or unmarshalled from JSON.
-* Possible to add more formats for marshalling and unmarshalling settings.
+* Settings can be marshalled to JSON or un-marshalled from JSON.
+* Possible to add more formats for marshalling and un-marshalling settings.
 * All methods exported on settings object are immutable, except ``Mixin``.
 
 Settings as Key value pairs
 ---------------------------
 
-Golang map is the chosen structure to pass settings, hold them within
-components and interpret them when ever it is needed. To create new
-settings object:
+Golang map is the chosen structure for passing around settings, holding them
+within components and interpret them when/where ever it is needed. To create
+new settings object:
 
 ```go
     setts := make(Settings)
@@ -28,24 +27,29 @@ Subsequently ``setts`` can be populated with {key,value} pairs, where each
 most out of ``Settings`` it is better to avoid nested values, as in:
 
 ```go
-    setts["llrb"] = Settings{"maxkeylen": 1024, "maxvallen": 1024}
+    // not recommended
+    setts["llrb"] = Settings{
+        "maxkeylen": 1024,
+        "maxvallen": 1024,
+    }
 ```
 
-Instead compose the settings as:
+Instead compose settings as:
 
 ```go
+    // recommended
     setts := make(Settings)
     setts["llrb.maxkeylen"] = 1024
     setts["llrb.maxvallen"] = 1024
 ```
 
 Although the former style is quite natural to manage a tree of settings at
-component level and at sub-component level, it can quickly become complex when
-we start passing settings object around the application. The later style
-attempt to preserve the topology of settings by using the dot-prefixed
-namespaces. There are three APIs available to filter out component level
-settings and merge it with container namespace, ``Section``, ``Trim``,
-and ``AddPrefix``:
+component and sub-component level, it can quickly become complex when
+we start passing settings object around the application. While the later
+style encourages flat map of {key,value} pairs, we can still preserve the
+topology of settings by using the dot-prefixed namespaces. There are three
+APIs available to filter out component level settings and merge it with
+container namespace, ``Section``, ``Trim``, and ``AddPrefix``:
 
 ```go
     setts := make(Settings)
@@ -53,7 +57,8 @@ and ``AddPrefix``:
     setts["memalloc"] = 1000000
     setts["llrb.maxkeylen"] = 1024
     setts["llrb.maxvallen"] = 1024
-    llrbsetts := setts.Section("llrb.")
+
+    llrbsetts := setts.Section("llrb.") // Section
 ```
 
 setts.Section API will filter out setting keys that are prefixed by ``llrb.``,
@@ -63,11 +68,11 @@ it will look-like:
     llrbsetts <==> Settings{"llrb.maxkeylen": 1024, "llrb.maxvallen": 1024}
 ```
 
-While passing llrbsettings to llrb component, it may not expect the ``llrb.``
-prefixed to its settings key. To trim them away:
+While passing llrbsettings to the llrb component, it may not expect the
+``llrb.`` prefixed to its settings key-name. To trim them away:
 
 ```go
-    llrbsettings := setts.Section("llrb.").Trim("llrb.")
+    llrbsettings := setts.Section("llrb.").Trim("llrb.") // Trim away "llrb."
 ```
 
 Now, llrbsettings will just be:
@@ -76,9 +81,9 @@ Now, llrbsettings will just be:
     llrbsetts <==> Settings{"maxkeylen": 1024, "maxvallen": 1024}
 ```
 
-In case llrb component provide default set of configuration parameter,
-to merge these settings to application-level settings object, use
-AddPrefix:
+In case, the llrb component is going to provide default set of
+configuration parameters, and we want to merge them with our
+application-level settings object, then, use AddPrefix:
 
 ```go
     appsetts := llrbsetts.AddPrefix("llrb.")
@@ -101,9 +106,11 @@ it friendly for JSON. To initialize Settings from JSON:
     json.Unmarshal(data, &setts)
 ```
 
+Can't get simpler than that !
+
 **Accessors**
 
-With ``map[string]interface{}`` settings value are resolved only during run
+With ``map[string]interface{}``, settings value are resolved only during run
 time.  There are several helper functions that type check and extract the
 settings value.
 
@@ -114,8 +121,9 @@ settings value.
 * String(key string) return the string value for key.
 * Strings(key string) shall parse value as comma separated string items.
 
-To encode large numbers that can fit within int64 and uint64, settings value
-can be encoded as decimal strings - ``{"epoch": "1125899906842624"}.
+**NOTE**: To encode large numbers that can fit within int64 and uint64,
+settings value can be encoded as decimal strings
+Eg: ``{"epoch": "1125899906842624"}.
 
 **Panics**
 

@@ -5,7 +5,7 @@ import "strings"
 import "strconv"
 import "encoding/json"
 
-// Settings map of settings parameters.
+// Settings {key,value} map of configuration parameters.
 type Settings map[string]interface{}
 
 // Section will create a new settings object with parameters
@@ -20,7 +20,7 @@ func (setts Settings) Section(prefix string) Settings {
 	return section
 }
 
-// AddPrefix will prefix all settings keyname with `prefix`.
+// AddPrefix to each and every keyname in the settings map.
 func (setts Settings) AddPrefix(prefix string) Settings {
 	newsetts := make(Settings)
 	for key, value := range setts {
@@ -29,7 +29,7 @@ func (setts Settings) AddPrefix(prefix string) Settings {
 	return newsetts
 }
 
-// Trim settings parameter with `prefix` string.
+// Trim leading prefix from each and every keyname in the settings map.
 func (setts Settings) Trim(prefix string) Settings {
 	trimmed := make(Settings)
 	for key, value := range setts {
@@ -38,7 +38,7 @@ func (setts Settings) Trim(prefix string) Settings {
 	return trimmed
 }
 
-// Filter settings paramters that contain `subs`.
+// Filter settings parameter whose keyname contain the substring ``subs``.
 func (setts Settings) Filter(subs string) Settings {
 	subsetts := make(Settings)
 	for key, value := range setts {
@@ -49,7 +49,11 @@ func (setts Settings) Filter(subs string) Settings {
 	return subsetts
 }
 
-// Mixin settings to override `setts` with `settings`.
+// Mixin settings to override `setts` with a list of `settings`. Typical
+// usage:
+//		Make(Settings).Mixin(setts1, setts2, setts3)
+//
+// Mixin mutates the receiving map, and applies settings from left to right.
 func (setts Settings) Mixin(settings ...interface{}) Settings {
 	update := func(arg map[string]interface{}) {
 		for key, value := range arg {
