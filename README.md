@@ -4,6 +4,7 @@ Settings and configurations for golang application
 [![Build Status](https://travis-ci.org/prataprc/gosettings.png)](https://travis-ci.org/prataprc/gosettings)
 [![Coverage Status](https://coveralls.io/repos/prataprc/gosettings/badge.png?branch=master&service=github)](https://coveralls.io/github/prataprc/gosettings?branch=master)
 [![GoDoc](https://godoc.org/github.com/prataprc/gosettings?status.png)](https://godoc.org/github.com/prataprc/gosettings)
+[![GitPitch](https://gitpitch.com/assets/badge.svg)](https://gitpitch.com/prataprc/gosettings/master?grs=github&t=white)
 
 * Easy to learn and easy to use settings for your libraries and applications.
 * Settings object is represented as ``map[string]interface{}`` object.

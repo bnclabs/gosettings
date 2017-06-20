@@ -19,13 +19,15 @@ In a nutshell
 
 ---
 
-Settings are key,value pairs
-============================
+Settings are {key,value} pairs
+==============================
 
 * Keys are strings, identify the settings name (aka: configuration parameter).
 * Values can be nil, bool, number, string, array, property-map.
 * Nested settings are not allowed, as in, if value is a property-map it
 shall not be interpreted as {key,value} pairs of settings.
+
+Example:
 
 ```go
 setts := Settings{
@@ -68,9 +70,9 @@ Namespace: for topology of settings
 ===================================
 
 While building applications that use several components, and each component
-allows itself to be configured via predefined set settings parameters,
-it becomes imperative that these components and sub-components need to be
-organized at application level.
+allows itself to be configured via predefined set parameters, it becomes
+imperative that these components and sub-components need to be organized
+at application level.
 
 This can be done by organizing the settings keys in namespace format.
 
@@ -80,14 +82,15 @@ setts["storage.llrb.maxkeylen"] = 1024
 setts["storage.llrb.maxvallen"] = 1024
 ```
 
-Component and sub-components are separated by ``.``
+Component and sub-components are separated by a ``.`` dot.
 
 ---
 
 Filtering settings
 ==================
 
-To filter out settings that are only relevant for ``llrb``:
+Say we have a component ``storage.llrb`` and we need to filter out parameters
+relevant for ``storage.llrb``, use the ``Section()`` API:
 
 ```go
 setts := make(Settings)
@@ -99,15 +102,15 @@ setts["storage.llrb.maxvallen"] = 1024
 llrbsetts := setts.Section("llrb.") // Section
 ```
 
-Use the Section() API, llrbsetts will be:
+llrbsetts will be:
 
-```text
+```go
 Settings{"storage.llrb.maxkeylen": 1024, "storage.llrb.maxvallen": 1024}
 ```
 
 ---
 
-Triming settings
+Trimming settings
 ================
 
 While passing llrbsetts to the llrb component, it may not expect the
