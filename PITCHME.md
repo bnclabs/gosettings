@@ -122,7 +122,7 @@ llrbsetts = setts.Section("storage.llrb.").Trim("storage.llrb.")
 
 Now, llrbsettings will just be:
 
-```text
+```go
 Settings{"maxkeylen": 1024, "maxvallen": 1024}
 ```
 
