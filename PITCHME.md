@@ -1,4 +1,4 @@
-Gosettings: for applications and libraries
+Gosettings: For applications and libraries
 ==========================================
 
 R Pratap Chakravarthy <br/>
