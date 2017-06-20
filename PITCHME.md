@@ -37,6 +37,8 @@ setts := Settings{
 }
 ```
 
+---
+
 Accessing values
 ================
 
@@ -60,6 +62,8 @@ setts := {"epoch": "1125899906842624"}
 fmt.Println("%d", setts.Uint64("epoch"))
 ```
 
+---
+
 Namespace: for topology of settings
 ===================================
 
@@ -77,6 +81,8 @@ setts["storage.llrb.maxvallen"] = 1024
 ```
 
 Component and sub-components are separated by ``.``
+
+---
 
 Filtering settings
 ==================
@@ -99,6 +105,8 @@ Use the Section() API, llrbsetts will be:
 Settings{"storage.llrb.maxkeylen": 1024, "storage.llrb.maxvallen": 1024}
 ```
 
+---
+
 Triming settings
 ================
 
@@ -114,6 +122,43 @@ Now, llrbsettings will just be:
 ```text
 Settings{"maxkeylen": 1024, "maxvallen": 1024}
 ```
+
+---
+
+From JSON
+=========
+
+Most often, settings are obtained from JSON text. One of the reason for
+using ``map[string]interface{}`` as the underlying data-structure is to keep
+it friendly for JSON. To initialize Settings from JSON:
+
+```go
+    var setts Settings
+    json.Unmarshal(data, &setts)
+```
+
+Can't get simpler than that !
+
+---
+
+Addprefix and Mixin
+===================
+
+When default settings from different components need to be consolidated into
+application level settings.
+
+```go
+import comp1
+import comp2
+
+comp1setts := comp1.Defaultsettings()
+comp2setts := comp1.Defaultsettings()
+appsetts := make(Settings).Mixin(
+    comp1setts.AddPrefix("comp1."), comp2setts.AddPrefix("comp2."),
+)
+```
+
+---
 
 Thank you
 =========
