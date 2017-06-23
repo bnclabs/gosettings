@@ -1,10 +1,8 @@
 package gosettings
 
 import "testing"
-import "fmt"
+import _ "fmt"
 import "reflect"
-
-var _ = fmt.Sprintf("dummy")
 
 func TestSection(t *testing.T) {
 	setts := Settings{
