@@ -1,7 +1,6 @@
 package gosettings
 
 import "testing"
-import _ "fmt"
 import "reflect"
 
 func TestSection(t *testing.T) {
