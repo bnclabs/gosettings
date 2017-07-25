@@ -50,7 +50,6 @@ concrete value mapped to a settings key.
 
 ```go
 setts.Bool("mvcc.enable")       // return the boolean value for key.
-setts.Float64("memutilization") // return the float64 value for key.
 setts.Int64("minkeysize") // return the int64 value for key.
 setts.Uint64("maxvalzie") // return the uint64 value for key.
 setts.String("log.file")  // return the string value for key.
