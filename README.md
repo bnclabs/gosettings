@@ -2,10 +2,10 @@ Settings and configurations for golang application
 --------------------------------------------------
 
 [![talk on matrix](https://github.com/prataprc/dotfiles/blob/master/assets/talkonmatrix.svg)](https://riot.im/app/#/user/@prataprc:matrix.org?action=chat)
-[![Build Status](https://travis-ci.org/prataprc/gosettings.png)](https://travis-ci.org/prataprc/gosettings)
-[![Coverage Status](https://coveralls.io/repos/prataprc/gosettings/badge.png?branch=master&service=github)](https://coveralls.io/github/prataprc/gosettings?branch=master)
-[![GoDoc](https://godoc.org/github.com/prataprc/gosettings?status.png)](https://godoc.org/github.com/prataprc/gosettings)
-[![GitPitch](https://gitpitch.com/assets/badge.svg)](https://gitpitch.com/prataprc/gosettings/master?grs=github&t=white)
+[![Build Status](https://travis-ci.org/bnclabs/gosettings.png)](https://travis-ci.org/bnclabs/gosettings)
+[![Coverage Status](https://coveralls.io/repos/bnclabs/gosettings/badge.png?branch=master&service=github)](https://coveralls.io/github/bnclabs/gosettings?branch=master)
+[![GoDoc](https://godoc.org/github.com/bnclabs/gosettings?status.png)](https://godoc.org/github.com/bnclabs/gosettings)
+[![GitPitch](https://gitpitch.com/assets/badge.svg)](https://gitpitch.com/bnclabs/gosettings/master?grs=github&t=white)
 
 * Easy to learn and easy to use settings for golang libraries and applications.
 * Settings object is represented as `map[string]interface{}` object.

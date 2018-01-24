@@ -3,7 +3,7 @@ Gosettings: For applications and libraries
 
 R Pratap Chakravarthy <br/>
 prataprc@gmail.com <br/>
-[https://github.com/prataprc/gosettings](https://github.com/prataprc/gosettings) <br/>
+[https://github.com/bnclabs/gosettings](https://github.com/bnclabs/gosettings) <br/>
 17, Jun 2017
 
 ---
@@ -168,6 +168,6 @@ Thank you
 
 If gosettings sounds useful please check out the following links.
 
-[Project README](https://github.com/prataprc/gosettings). <br/>
-[API doc](https://godoc.org/github.com/prataprc/gosettings). <br/>
-[Please contribute](https://github.com/prataprc/gosettings/issues). <br/>
+[Project README](https://github.com/bnclabs/gosettings). <br/>
+[API doc](https://godoc.org/github.com/bnclabs/gosettings). <br/>
+[Please contribute](https://github.com/bnclabs/gosettings/issues). <br/>
