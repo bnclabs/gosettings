@@ -6,7 +6,7 @@ Settings and configurations for golang application
 [![GoDoc](https://godoc.org/github.com/prataprc/gosettings?status.png)](https://godoc.org/github.com/prataprc/gosettings)
 [![GitPitch](https://gitpitch.com/assets/badge.svg)](https://gitpitch.com/prataprc/gosettings/master?grs=github&t=white)
 
-* Easy to learn and easy to use settings for your libraries and applications.
+* Easy to learn and easy to use settings for golang libraries and applications.
 * Settings object is represented as ``map[string]interface{}`` object.
 * Settings can be marshalled to JSON or un-marshalled from JSON.
 * Possible to add more formats for marshalling and un-marshalling settings.
