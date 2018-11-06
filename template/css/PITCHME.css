@@ -342,3 +342,6 @@ ul.para {
     margin: 20px 0px !important;
     list-style-type: none !important;
 }
+.text-left {
+    text-align: left !important;
+}

@@ -169,6 +169,8 @@ Thank you
 
 If gosettings sounds useful please check out the following links.
 
+<br/>
+
 @fa[book] [Project README](https://github.com/bnclabs/gosettings). <br/>
 @fa[code] [API doc](https://godoc.org/github.com/bnclabs/gosettings). <br/>
 @fa[github] [Please contribute](https://github.com/bnclabs/gosettings/issues). <br/>
