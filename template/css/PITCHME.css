@@ -299,6 +299,9 @@
 }
 
 /* gosettings */
+.reveal .slides {
+    text-align: left !important;
+}
 .reveal h1 {
     font-size: 1.7em !important;
     text-align: left !important;
